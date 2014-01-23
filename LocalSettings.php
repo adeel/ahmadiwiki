@@ -120,6 +120,9 @@ $wgGroupPermissions['*']['edit'] = false;
 # End of automatically generated settings.
 # Add more configuration options below.
 
+# Prevent new user registrations except by sysops
+$wgGroupPermissions['*']['createaccount'] = false;
+
 # EXTENSIONS
 
 require_once("$IP/extensions/Renameuser/Renameuser.php");
