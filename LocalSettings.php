@@ -15,8 +15,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
 
-require 'LocalSettings.database.php';
-
 ## Uncomment this to disable output compression
 # $wgDisableOutputCompression = true;
 
@@ -32,7 +30,7 @@ $wgScriptPath = "";
 $wgScriptExtension = ".php";
 
 ## The protocol and server name to use in fully-qualified URLs
-$wgServer = "http://ahmadiwiki.herokuapp.com";
+$wgServer = "http://aw.preschema.com";
 
 ## The relative URL path to the skins directory
 $wgStylePath = "$wgScriptPath/skins";
@@ -46,15 +44,18 @@ $wgLogo             = "$wgStylePath/common/images/wiki.png";
 $wgEnableEmail = false;
 $wgEnableUserEmail = true; # UPO
 
-$wgEmergencyContact = "kadeel@gmail.com";
-$wgPasswordSender = "kadeel@gmail.com";
+$wgEmergencyContact = "apache@aw.preschema.com";
+$wgPasswordSender = "apache@aw.preschema.com";
 
 $wgEnotifUserTalk = false; # UPO
 $wgEnotifWatchlist = false; # UPO
 $wgEmailAuthentication = true;
 
+## Database settings
+require_once('LocalSettings.database.php');
+
 ## Shared memory settings
-$wgMainCacheType = CACHE_ACCEL;
+$wgMainCacheType = CACHE_NONE;
 $wgMemCachedServers = array();
 
 ## To enable image uploads, make sure the 'images' directory
@@ -83,13 +84,13 @@ $wgShellLocale = "en_US.utf8";
 #$wgCacheDirectory = "$IP/cache";
 
 # Site language code, should be one of the list in ./languages/Names.php
-$wgLanguageCode = "en";
+$wgLanguageCode = "en-ca";
 
-$wgSecretKey = "120de97b381c66282afc5930338ae6454560200aac5b9d6e71e2b39ee7e7fd14";
+$wgSecretKey = "a04ada977ec60f1458b8bac2bbb2d73000ab3c1423c759ecc6dc8753314665f6";
 
 # Site upgrade key. Must be set to a string (default provided) to turn on the
 # web installer while LocalSettings.php is in place
-$wgUpgradeKey = "69b374425a12b668";
+$wgUpgradeKey = "26634db4ad95609b";
 
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook', 'vector':
@@ -99,9 +100,9 @@ $wgDefaultSkin = "vector";
 ## appropriate copyright notice / icon. GNU Free Documentation
 ## License and Creative Commons licenses are supported so far.
 $wgRightsPage = ""; # Set to the title of a wiki page that describes your license/copyright
-$wgRightsUrl = "http://creativecommons.org/licenses/by/3.0/";
-$wgRightsText = "Creative Commons Attribution";
-$wgRightsIcon = "{$wgStylePath}/common/images/cc-by.png";
+$wgRightsUrl = "http://creativecommons.org/licenses/by-nc-sa/3.0/";
+$wgRightsText = "Creative Commons Attribution Non-Commercial Share Alike";
+$wgRightsIcon = "{$wgStylePath}/common/images/cc-by-nc-sa.png";
 
 # Path to the GNU diff3 utility. Used for conflict resolution.
 $wgDiff3 = "/usr/bin/diff3";
@@ -113,15 +114,17 @@ $wgDiff3 = "/usr/bin/diff3";
 $wgResourceLoaderMaxQueryLength = -1;
 
 # The following permissions were set based on your choice in the installer
-# $wgGroupPermissions['*']['createaccount'] = false;
+$wgGroupPermissions['*']['createaccount'] = false;
 $wgGroupPermissions['*']['edit'] = false;
+
+# Enabled Extensions. Most extensions are enabled by including the base extension file here
+# but check specific extension documentation for more details
+# The following extensions were automatically enabled:
+require_once( "$IP/extensions/Cite/Cite.php" );
 
 
 # End of automatically generated settings.
 # Add more configuration options below.
-
-# Prevent new user registrations except by sysops
-$wgGroupPermissions['*']['createaccount'] = false;
 
 # EXTENSIONS
 
@@ -130,19 +133,3 @@ require_once("$IP/extensions/Renameuser/Renameuser.php");
 require_once("$IP/extensions/Cite/Cite.php");
 require_once("$IP/extensions/ParserFunctions/ParserFunctions.php");
 
-/*
-## WYSIWYG extension
-
-require_once( "$IP/extensions/WikiEditor/WikiEditor.php" ); //By Texts (very old)
-require_once("$IP/extensions/WYSIWYG/WYSIWYG.php");
-$wgGroupPermissions['*']['wysiwyg'] = true;
-
-$wgDefaultUserOptions['cke_show'] = 'richeditor';//Enable CKEditor
-$wgDefaultUserOptions['riched_use_toggle'] = true;//Editor can toggle between CKEditor/WikiTextBox
-$wgDefaultUserOptions['riched_start_disabled'] = false;//Important!!! else bug...
-$wgDefaultUserOptions['riched_toggle_remember_state'] = true;//working/bug?)
-$wgDefaultUserOptions['riched_use_popup'] = false;//Deprecated
-
-$wgFCKEditorExcludedNamespaces[] = NS_MEDIAWIKI;
-$wgFCKEditorExcludedNamespaces[] = NS_TEMPLATE;
-*/
