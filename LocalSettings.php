@@ -15,6 +15,10 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
 
+ini_set('display_startup_errors',1);
+ini_set('display_errors',1);
+error_reporting(-1);
+
 ## Uncomment this to disable output compression
 # $wgDisableOutputCompression = true;
 
@@ -132,4 +136,3 @@ require_once("$IP/extensions/Renameuser/Renameuser.php");
 # require_once("$IP/extensions/MarkdownSyntax/MarkdownSyntax.php");
 require_once("$IP/extensions/Cite/Cite.php");
 require_once("$IP/extensions/ParserFunctions/ParserFunctions.php");
-
